@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/auth.js" defer></script>
+    <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+    <form method="post" id="register-form">
+        <div class="register">
+            <div class="name">
+                <label for="name">Enter your name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+            <div class="email">
+                <label for="email">Enter your email</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div class="password">
+                <label for="password">Enter your password</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+
+            <button id="register-btn" type="submit">Register</button>
+        </div>
+    </form>
+</body>
+</html>
