@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/admin.js" defer></script>
+  </head>
+  <body>
+    <div class="admin-container">
+      <h1>Admin Dashboard</h1>
+      <p>
+        Welcome to the admin dashboard. Here you can manage campaigns, view user
+        data, and perform administrative tasks.
+      </p>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="users-list">
+          </tbody>
+        </table>
+      </div>
+      <div id="campaign-moderation">
+        <h3>Campaign Moderation</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Campaign ID</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="campaigns-list">
+          </tbody>
+        </table>
+    </div>
+    </div>
+  </body>
+</html>
