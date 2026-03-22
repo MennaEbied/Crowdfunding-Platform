@@ -7,21 +7,23 @@
     <script src="../js/auth.js" defer></script>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
-  <body>
+  <body class="auth-page">
     <form method="POST" id="login-form">
- <div class="auth">
-      <div class="email">
-        <label for="email">Enter your email</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <div class="password">
-        <label for="password">Enter your password</label>
-        <input type="password" id="password" name="password" required />
-      </div>
+      <div class="auth">
+        <div class="email">
+          <label for="email">Enter your email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="password">
+          <label for="password">Enter your password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
 
-      <button id="login-btn" type="submit">Login</button>
-    </div>
+        <button id="login-btn" type="submit">Login</button>
+        <p class="auth-footer">
+          Don't have an account? <a href="register.html">Register</a>
+        </p>
+      </div>
     </form>
-   
   </body>
 </html>

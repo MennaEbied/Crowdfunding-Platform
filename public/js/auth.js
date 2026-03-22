@@ -27,7 +27,7 @@ async function Login(email, password) {
       );
 
       if (user.role === "admin") {
-        window.location.href = "/pages/admin.html";
+        window.location.href = "/index.html";
       } else {
         window.location.href = "/index.html";
       }
