@@ -5,8 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="../js/admin.js" defer></script>
+    <script src="../js/components/navbar.js" defer></script>
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <i
+            class="fa-solid fa-hand-holding-heart fa-xl"
+            style="color: #06a77d"
+          ></i>
+          <p>Fund</p>
+        </div>
+
+        <div class="nav-menu">
+          <div class="nav-left"></div>
+          <div class="nav-right"></div>
+        </div>
+        <div class="mobile-nav">
+          <i class="fa-solid fa-bars" style="color: #06a77d"></i>
+        </div>
+      </div>
+    </nav>
     <div class="admin-container">
       <h1>Admin Dashboard</h1>
       <p>
@@ -14,34 +41,40 @@
         data, and perform administrative tasks.
       </p>
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>User ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="users-list">
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-list"></tbody>
+          </table>
+        </div>
       </div>
       <div id="campaign-moderation">
         <h3>Campaign Moderation</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Campaign ID</th>
-              <th>Title</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="campaigns-list">
-          </tbody>
-        </table>
-    </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Campaign ID</th>
+                <th>Title</th>
+                <th>Goal</th>
+                <th>Raised</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="campaigns-list"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </body>
 </html>
