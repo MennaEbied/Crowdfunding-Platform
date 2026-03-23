@@ -1,0 +1,144 @@
+.profile-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    padding: 30px;
+    text-align: center;
+}
+
+.user-info h1 {
+    font-size: 28px;
+    color: #333;
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.dashboard-section {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-height: 300px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f9f9f9;
+    padding-bottom: 15px;
+}
+.section-title h2 {
+    font-size: 20px;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboard-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateX(5px);
+    border-color: #06A77D;
+}
+
+.empty-msg {
+    color: #555;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.campaign-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.amount-tag span {
+    color: #06A77D;
+    font-weight: 700;
+}
+
+
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-btn {
+    background: #f0fdf9;
+    color: #06A77D;
+    margin-right: 5px;
+}
+
+.edit-btn:hover {
+    background: #06A77D;
+    color: #fff;
+}
+
+.delete-btn {
+    background: #fff5f5;
+    color: #ff4d4d;
+}
+
+.delete-btn:hover {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .profile-container {
+        margin: 20px auto;
+    }
+}
