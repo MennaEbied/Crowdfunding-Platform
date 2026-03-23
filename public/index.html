@@ -4,26 +4,145 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CrowdFunding</title>
-    <script src="index.js" defer type="module"></script>
+    <script src="index.js" defer></script>
     <script src="./js/components/navbar.js" defer></script>
     <link rel="stylesheet" href="./css/navbar.css" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <nav>
       <div class="navbar">
-        <p class="logo">CrowdFunding</p>
-        <div class="nav-left">
-          <a href="#">Home</a>
-          <a href="./pages/campaign.html">Campaigns</a>
-          <a href="#">About</a>
+        <div class="logo">
+          <i
+            class="fa-solid fa-hand-holding-heart fa-xl"
+            style="color: #06a77d"
+          ></i>
+          <p>Fund</p>
         </div>
-        <div class="nav-right"></div>
+
+        <div class="nav-menu">
+          <div class="nav-left"></div>
+          <div class="nav-right"></div>
+        </div>
+        <div class="mobile-nav">
+          <i class="fa-solid fa-bars" style="color: #06a77d"></i>
+        </div>
       </div>
     </nav>
-    <main>
-      <h2>Approved Projects</h2>
+    <section class="hero-section">
+      <div class="hero-text-container">
+        <h1>Your trusted world wide <span>Funding platform</span></h1>
+        <p>
+          Empowering innovators and supporters across alternative assets—real
+          estate, tech, and creative arts—delivering deep expertise and
+          disciplined execution worldwide.
+        </p>
+      </div>
+
+      <div class="hero-cards">
+        <div class="info-card">
+          <div class="icon-container">
+            <i class="fa-solid fa-box-archive"></i>
+          </div>
+          <h3>Ignite Impact</h3>
+          <p>
+            Spark joy by sharing your cause and the positive impact it brings.
+            Clearly express how contributions will make a meaningful difference.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon-container">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h3>Spread The Word</h3>
+          <p>
+            Leverage the speed of social media and online networks. Share your
+            fundraising campaign swiftly across various platforms.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="icon-container">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <h3>Connect Globally</h3>
+          <p>
+            Build a strong social network around your cause. Encourage
+            supporters to share the campaign within their local communities.
+          </p>
+        </div>
+      </div>
+    </section>
+    <main class="content-wrapper">
+      <div class="section-header">
+        <div class="header-title">
+          <h2>Approved Projects</h2>
+          <p>Explore high-impact initiatives curated by our team.</p>
+        </div>
+
+        <div class="filter-group">
+          <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search projects..."
+            />
+          </div>
+          <select id="category-filter">
+            <option value="">All Categories</option>
+            <option value="Technology">Technology</option>
+            <option value="Education">Education</option>
+            <option value="Health">Health</option>
+            <option value="Environment">Environment</option>
+            <option value="Community">Community</option>
+          </select>
+        </div>
+      </div>
+
       <div id="campaign-list" class="campaign-container"></div>
     </main>
+    <div id="campaign-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="modal-body"></div>
+      </div>
+    </div>
   </body>
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <i class="fa-solid fa-hand-holding-heart" style="color: #06a77d"></i>
+          <p>Fund</p>
+        </div>
+        <p class="brand-text">
+          Empowering ideas through community support. Join the movement and make
+          a difference today.
+        </p>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Platform</h4>
+        <a href="#">Explore</a>
+        <a href="#">How it Works</a>
+        <a href="#">Launch Project</a>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Support</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:support@fund.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Fund. All rights reserved.</p>
+    </div>
+  </footer>
 </html>
