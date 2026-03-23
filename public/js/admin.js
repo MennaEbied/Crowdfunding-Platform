@@ -41,8 +41,19 @@ async function loadUsers() {
     const response = await fetch("http://localhost:3000/users");
     const users = await response.json();
     const list = document.getElementById("users-list");
-    list.innerHTML = users
-      .filter((user) => user.role !== "admin")
+
+    const regularUsers = users.filter((user) => user.role !== "admin");
+    if (regularUsers.length === 0) {
+      list.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 20px; color: #888;">
+            No registered users found.
+          </td>
+        </tr>`;
+      return;
+    }
+
+    list.innerHTML = regularUsers
       .map(
         (user) => `
         <tr>
@@ -74,6 +85,16 @@ async function loadCampaigns() {
     const res = await fetch("http://localhost:3000/campaigns");
     const campaigns = await res.json();
     const list = document.getElementById("campaigns-list");
+
+    if (campaigns.length === 0) {
+      list.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align: center; padding: 20px; color: #888;">
+            No campaigns have been created yet.
+          </td>
+        </tr>`;
+      return;
+    }
 
     list.innerHTML = campaigns
       .map(
@@ -107,7 +128,6 @@ async function loadCampaigns() {
     console.error("Failed to load campaigns:", error);
   }
 }
-
 async function approveCampaign(id) {
   try {
     await fetch(`http://localhost:3000/campaigns/${id}`, {
