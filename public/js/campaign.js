@@ -14,6 +14,14 @@ document
 
     const user = JSON.parse(localStorage.getItem("currentUser"));
     if (!user) return alert("Please login first");
+    const deadlineInput = document.getElementById("deadline").value;
+    const today = new Date().toISOString().split("T")[0];
+
+    if (deadlineInput < today) {
+      return alert(
+        "The deadline cannot be in the past. Please choose today or a future date.",
+      );
+    }
 
     const imageInput = document.getElementById("image");
     if (!imageInput.files.length) return alert("Please upload an image");
@@ -23,7 +31,7 @@ document
       const newCampaign = {
         title: document.getElementById("title").value,
         description: document.getElementById("description").value,
-        category: document.getElementById("category").value, 
+        category: document.getElementById("category").value,
         goal: Number(document.getElementById("goal").value),
         deadline: document.getElementById("deadline").value,
         image: imageBase64,
@@ -46,4 +54,3 @@ document
       console.error("Error creating campaign:", error);
     }
   });
-
