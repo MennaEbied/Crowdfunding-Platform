@@ -1,17 +1,17 @@
 .table-responsive {
-    width: 100%;
-    overflow-x: auto; 
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
 }
 
 .admin-container table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 0;
-    min-width: 800px; 
-    background: #fff;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0;
+  min-width: 800px;
+  background: #fff;
 }
 .admin-container {
   max-width: 1000px;
@@ -68,13 +68,13 @@
 }
 .btn-delete {
   background: #fff5f5;
-    color: #ff4d4d;
-    font-weight: 600;
+  color: #ff4d4d;
+  font-weight: 600;
 }
 .btn-approve {
-   background: #f0fdf9;
-    color: #06A77D;
-    font-weight: 600;
+  background: #f0fdf9;
+  color: #06a77d;
+  font-weight: 600;
 }
 .status-badge {
   padding: 4px 10px;
@@ -93,23 +93,23 @@
   color: #06a77d;
 }
 @media (max-width: 768px) {
-    .admin-container {
-        padding: 0 10px;
-        margin: 20px auto;
-    }
+  .admin-container {
+    padding: 0 10px;
+    margin: 20px auto;
+  }
 
-    .admin-container h1 {
-        font-size: 24px;
-    }
-    
-    .admin-actions {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-    }
+  .admin-container h1 {
+    font-size: 24px;
+  }
 
-    .admin-actions button {
-        height: 35px;
-        width: 90px;
-    }
+  .admin-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .admin-actions button {
+    height: 35px;
+    width: 90px;
+  }
 }
