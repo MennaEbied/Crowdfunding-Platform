@@ -1,92 +1,145 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   if (!currentUser || currentUser.role !== "admin") {
     alert("Access Denied!");
-    window.location.href = "login.html";
+    window.location.replace("login.html");
     return;
   }
 
   loadUsers();
-  loadPendingCampaigns();
+  loadCampaigns();
+
+  document.getElementById("users-list").addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    const userId = btn.dataset.id;
+    const currentStatus = btn.dataset.active === "true";
+
+    await toggleUserStatus(userId, currentStatus);
+  });
+
+  document
+    .getElementById("campaigns-list")
+    .addEventListener("click", async (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+
+      const campaignId = btn.dataset.id;
+
+      if (btn.classList.contains("btn-approve")) {
+        await approveCampaign(campaignId);
+      } else if (btn.classList.contains("btn-delete")) {
+        await deleteCampaign(campaignId);
+      }
+    });
 });
+
 async function loadUsers() {
   try {
     const response = await fetch("http://localhost:3000/users");
     const users = await response.json();
     const list = document.getElementById("users-list");
-    list.innerHTML = "";
-    users.forEach((user) => {
-      if (user.role === "admin") return;
-      const row = `
-             <tr>
-             <td>${user.id}</td>
-                <td>${user.name}</td>   
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td>
-                    <button onclick="toggleUserStatus(${user.id}, ${user.isActive})">${user.isActive ? "Ban" : "Unban"}</button>
-                </td>
-             </tr>
-            `;
-      list.innerHTML += row;
-    });
+    list.innerHTML = users
+      .filter((user) => user.role !== "admin")
+      .map(
+        (user) => `
+        <tr>
+            <td>${user.id}</td>
+            <td><strong>${user.name}</strong></td>   
+            <td>${user.email}</td>
+            <td>${user.role}</td>
+            <td>
+                <div class="admin-actions">
+                    <button 
+                        class="${user.isActive ? "btn-delete" : "btn-approve"}" 
+                        data-id="${user.id}" 
+                        data-active="${user.isActive}">
+                        ${user.isActive ? "Ban" : "Unban"}
+                    </button>
+                </div>
+            </td>
+        </tr>
+      `,
+      )
+      .join("");
   } catch (error) {
-    console.error("Error loading users:", error);
+    console.error("Failed to load users:", error);
   }
 }
 
 async function loadCampaigns() {
-  const res = await fetch("http://localhost:3000/campaigns");
-  const campaigns = await res.json();
-  const list = document.getElementById("campaigns-list");
-  list.innerHTML = "";
-  campaigns.forEach((campaign) => {
-    const row = `
-                <tr>        
-                    <td>${campaign.title}</td>
-                    <td>${campaign.description}</td>
-                    <td>${campaign.goal}</td>   
-                    <td>${campaign.currentAmount}</td>
-                    <td>${campaign.deadline}</td>
-                    <td>${campaign.isApproved ? "Approved" : "Pending"}</td>
-                    <td>
-                        ${!campaign.isApproved ? `<button onclick="approveCampaign(${campaign.id})">Approve</button>` : ""}
-                    </td>
-                    <td>
-                        <button onclick="deleteCampaign(${campaign.id})">Delete</button>
-                    </td>
-                </tr>
-            `;
-    list.innerHTML += row;
-  });
+  try {
+    const res = await fetch("http://localhost:3000/campaigns");
+    const campaigns = await res.json();
+    const list = document.getElementById("campaigns-list");
+
+    list.innerHTML = campaigns
+      .map(
+        (campaign) => `
+        <tr> 
+            <td>${campaign.id}</td>       
+            <td><strong>${campaign.title}</strong></td>
+            <td>$${Number(campaign.goal).toLocaleString()}</td>   
+            <td>$${Number(campaign.currentAmount).toLocaleString()}</td>
+            <td>${campaign.deadline}</td>
+            <td>
+                <span class="status-badge ${campaign.isApproved ? "status-approved" : "status-pending"}">
+                    ${campaign.isApproved ? "Approved" : "Pending"}
+                </span>
+            </td>
+            <td>
+                <div class="admin-actions">
+                    ${
+                      !campaign.isApproved
+                        ? `<button class="btn-approve" data-id="${campaign.id}">Approve</button>`
+                        : ""
+                    }
+                    <button class="btn-delete" data-id="${campaign.id}">Delete</button>
+                </div>
+            </td>
+        </tr>
+    `,
+      )
+      .join("");
+  } catch (error) {
+    console.error("Failed to load campaigns:", error);
+  }
 }
+
 async function approveCampaign(id) {
-  await fetch(`http://localhost:3000/campaigns/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isApproved: true }),
-  });
-  loadCampaigns();
+  try {
+    await fetch(`http://localhost:3000/campaigns/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isApproved: true }),
+    });
+    loadCampaigns();
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function deleteCampaign(id) {
-  await fetch(`http://localhost:3000/campaigns/${id}`, {
-    method: "DELETE",
-  });
-  loadCampaigns();
+  if (!confirm("Delete this campaign?")) return;
+  try {
+    await fetch(`http://localhost:3000/campaigns/${id}`, { method: "DELETE" });
+    loadCampaigns();
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function toggleUserStatus(id, currentStatus) {
-  await fetch(`http://localhost:3000/users/${id}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ isActive: !currentStatus }),
-  });
-  loadUsers();
+  try {
+    await fetch(`http://localhost:3000/users/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isActive: !currentStatus }),
+    });
+    loadUsers();
+  } catch (err) {
+    console.error(err);
+  }
 }
-// admin.js
-document.addEventListener("DOMContentLoaded", () => {
-  loadUsers();
-  loadCampaigns();
-});
