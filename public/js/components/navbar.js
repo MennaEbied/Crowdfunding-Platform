@@ -11,8 +11,8 @@ function Navbar() {
         `;
     navLeft.innerHTML = `
         <a href="/index.html">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact Us</a>
+        <a href="#hero-section">About</a>
+        <a href="#footer-section">Contact Us</a>
         `;
 
     document.getElementById("login-btn").addEventListener("click", () => {
