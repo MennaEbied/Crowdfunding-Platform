@@ -17,15 +17,18 @@ A full-stack web application built to facilitate community-driven project fundin
 
   ## 📥 Installation
   
-  1. **Clone the repository**
+1. **Clone the repository**
+   
    ```bash
    git clone https://github.com/MennaEbied/Crowdfunding-Platform.git
    cd Crowdfunding-Platform
    
 2. **Install dependencies:**
+   
    ```bash
     npm install json-server
 
 3. **Launch the application:**
+   
    ```bash
     npx json-server db.json
